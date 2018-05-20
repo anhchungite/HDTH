@@ -11,6 +11,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\base\Security;
+use backend\models\Tasks;
 
 /**
  * Site controller
@@ -71,7 +73,20 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $customer = Yii::$app->request->post('customer');
+        $tasks = null;
+        if (!is_null($customer)) {
+            if(Yii::$app->user->isGuest) {
+                $tasks = Tasks::findOne(['customer_id' => $customer]);
+            } else {
+                $tasks = Tasks::findAll(['customer_id' => $customer]);
+            }
+        }
+        return $this->render('index',
+        [
+            'tasks' => $tasks,
+            'customer' => $customer
+        ]);
     }
 
     /**

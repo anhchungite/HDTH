@@ -114,3 +114,14 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.container .site-error {
+    padding-top: 20px;
+}
+
+.container .site-index {
+    padding-top: 20px;
+}
+.mr-top-15 {
+    margin-top: 15px;
+}

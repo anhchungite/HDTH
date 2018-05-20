@@ -14,6 +14,7 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Tasks */
 /* @var $form yii\widgets\ActiveForm */
+$url = \yii\helpers\Url::to(['accessories/get-accessories']);
 $js = '
 jQuery(".dynamicform_wrapper").on("afterInsert", function(e, item) {
     jQuery(".dynamicform_wrapper .panel-title-dynamicform").each(function(index) {
@@ -26,9 +27,12 @@ jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
         jQuery(this).html("'. Yii::t('app', 'Accessories') .': " + (index + 1))
     });
 });
+var customer = GetURLParameter("for");
+if(customer != "") {
+    $("input#tasks-customer_id").val(customer.replace(/\+/g, " "));
+}
 ';
 $this->registerJs($js);
-$url = \yii\helpers\Url::to(['accessories/get-accessories']);
 $jsOnload = '
 var url_get_accessories_info = "'. \yii\helpers\Url::to(['accessories/get-info']) .'";
 ';

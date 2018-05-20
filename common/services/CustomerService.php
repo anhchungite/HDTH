@@ -8,6 +8,7 @@ class CustomerService {
         if (!is_null($q)) {
             $query = new Query;
             $query->select('customer_id')
+                ->distinct()
                 ->from('tasks')
                 ->where(['like', 'customer_id', $q])
                 ->limit(20);

@@ -1,6 +1,7 @@
 <?php
 return [
     // 'language' => 'vi-VN',
+    'name' => 'My System', 
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -41,23 +42,11 @@ return [
                     // 'sourceLanguage' => 'en-US',
                     'fileMap' => [
                         'app' => 'app.php',
-                        'app/error' => 'error.php',
-                        'app/mail' => 'mail.php',
+                        'app/error' => 'app/error.php',
+                        'app/mail' => 'app/mail.php',
                     ],
                 ],
             ],
         ],
-        /*
-        'urlManager' => [
-            'class' => 'yii\web\UrlManager',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => array(
-              '<controller:\w+>/<id:\d+>' => '<controller>/view',
-              '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-              '<controller:\w+>/<action:\w+>'  => '<controller>/<action>', 
-            ),
-        ],
-        */
     ],
 ];

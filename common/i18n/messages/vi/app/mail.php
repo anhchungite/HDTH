@@ -19,4 +19,5 @@
 return [
     'Follow the link below to reset your password:' => 'Nhấp vào liên kết bên dưới để khôi phục mật khẩu của bạn:',
     'Hello' => 'Xin chào',
+    'Password reset for ' => 'Khôi phục mật khẩu cho ',
 ];

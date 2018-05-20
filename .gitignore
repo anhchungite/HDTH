@@ -35,5 +35,5 @@ phpunit.phar
 /.vagrant
 
 # apache log
-error.log
-access.log
+/error.log
+/access.log
