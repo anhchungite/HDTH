@@ -134,7 +134,6 @@ class TaskController extends BaseController
      */
     public function actionUpdate($id)
     {
-
         $modelTasks = $this->findModel($id);
         $modelTasksDetail = $modelTasks->tasksDetails;
 

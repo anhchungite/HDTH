@@ -37,5 +37,7 @@ return [
         Yii::t('app', 'Oct'), 
         Yii::t('app', 'Nov'), 
         Yii::t('app', 'Dec')
-    ]
+    ],
+    // 'logo' => '/logo.png'
+    'logo' => ''
 ];

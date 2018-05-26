@@ -21,7 +21,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Yii::$app->name?> | <?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -30,26 +30,26 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Html::img(Yii::$app->params['logo'], ['width' => '125px']),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => Yii::t('app', 'Home'), 'url' => ['/site']],
-        ['label' => Yii::t('app', 'Task'), 'url' => ['/task']],
-        ['label' => Yii::t('app', 'Accessories'), 'url' => ['/accessories']],
-        ['label' => Yii::t('app', 'Statistic'), 'url' => ['/statistic']],
+        ['label' => '<span class="glyphicon glyphicon-home"></span> ' . Yii::t('app', 'Home'), 'url' => ['/site']],
+        ['label' => '<span class="glyphicon glyphicon-tasks"></span> ' . Yii::t('app', 'Task'), 'url' => ['/task']],
+        ['label' => '<span class="glyphicon glyphicon-flash"></span> ' . Yii::t('app', 'Accessories'), 'url' => ['/accessories']],
+        ['label' => '<span class="glyphicon glyphicon-stats"></span> ' . Yii::t('app', 'Statistic'), 'url' => ['/statistic']],
     ];
     if (Yii::$app->user->isGuest) {
-        $rightItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
+        $rightItems[] = ['label' => '<span class="glyphicon glyphicon-log-in"></span> ' . Yii::t('app', 'Login'), 'url' => ['/site/login']];
     } else {
-        $rightItems[] = ['label' => Yii::t('app', 'User'), 'url' => ['/user/index']];
+        $rightItems[] = ['label' => '<span class="glyphicon glyphicon-user"></span> ' . Yii::t('app', 'User'), 'url' => ['/user/index']];
         $rightItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
+                '<span class="glyphicon glyphicon-log-out"></span> ' . Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->name . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -72,10 +72,12 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => $menuItems,
+        'encodeLabels' => false,
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $rightItems,
+        'encodeLabels' => false,
     ]);
     NavBar::end();
     ?>

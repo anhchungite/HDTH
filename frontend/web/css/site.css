@@ -125,3 +125,7 @@ a.desc:after {
 .mr-top-15 {
     margin-top: 15px;
 }
+
+.navbar-brand {
+    padding: 3px 15px;
+}

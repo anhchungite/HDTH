@@ -18,6 +18,12 @@ use Yii;
  */
 class Accessories extends \yii\db\ActiveRecord
 {
+
+    public static function find()
+    {
+        return new AccessoriesQuery(get_called_class());
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -45,12 +51,10 @@ class Accessories extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'name' => Yii::t('app', 'Name'),
             'o_price' => Yii::t('app', 'Original Price'),
             'price' => Yii::t('app', 'Sale Price'),
             'charge' => Yii::t('app', 'Charge'),
-            'deleted' => 'Deleted',
         ];
     }
 

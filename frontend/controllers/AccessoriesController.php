@@ -34,20 +34,8 @@ class AccessoriesController extends BaseController
         if (Yii::$app->request->isAjax) {
             $post = Yii::$app->request->post();
             $id = $post['id'];
-            $model = new Accessories();
-            $accessories = $model->findOne(['id' => $id, 'deleted' => 0]); 
-            $data = [
-                'id' => $accessories->id,
-                'name' => $accessories->name,
-                'charge' => $accessories->charge,
-                'price' => $accessories->price,
-            ];
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-            return [
-                'result' => $data,
-                'code' => 100,
-            ];
-          }
+            return \common\services\AccessoriesService::getDetail($id);
+        }
     }
 
     public function actionGetAccessories($q = null) {

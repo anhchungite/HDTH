@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "tasks".
  *
  * @property int $id
- * @property string $customer_id
+ * @property string $customer
  * @property string $content
  * @property string $charge
  * @property int $status
@@ -38,7 +38,7 @@ class Tasks extends \yii\db\ActiveRecord
             [['charge'], 'number'],
             [['status', 'deleted'], 'integer'],
             [['create_at', 'update_at'], 'safe'],
-            [['customer_id'], 'string', 'max' => 255],
+            [['customer'], 'string', 'max' => 255],
         ];
     }
 
@@ -49,7 +49,7 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'customer_id' => 'Customer ID',
+            'customer' => 'Customer',
             'content' => 'Content',
             'charge' => 'Charge',
             'status' => 'Status',

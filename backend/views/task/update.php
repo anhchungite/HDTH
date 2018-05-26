@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Tasks */
 
-$this->title = Yii::t('app', 'Update Tasks: ') . $modelTasks->id;
+$this->title = Yii::t('app', 'Update Tasks: ') . $modelTasks->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tasks'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $modelTasks->id, 'url' => ['view', 'id' => $modelTasks->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');

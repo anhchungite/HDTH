@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'customer_id',
-            'content:ntext',
+            'customer',
+            'note:ntext',
             [
                 'attribute' => 'status',
                 'content' => function($model) {

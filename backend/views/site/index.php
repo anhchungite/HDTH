@@ -35,7 +35,7 @@ $this->title = 'My Yii Application';
                             ?>
                                 <tr>
                                     <td><?= $k + 1?></td>
-                                    <td><?= $task->customer_id?></td>
+                                    <td><?= $task->customer?></td>
                                     <td><?= $task->create_at?></td>
                                     <td><?= Html::a(Yii::t('app', 'Detail'), ['task/view', 'id' => $task->id])?></td>
                                 </tr>
@@ -71,7 +71,7 @@ $this->title = 'My Yii Application';
                                 ?>
                                     <tr>
                                         <td><?= $k + 1?></td>
-                                        <td><?= $task->customer_id?></td>
+                                        <td><?= $task->customer?></td>
                                         <td><?= $task->create_at?></td>
                                         <td><?= Html::a(Yii::t('app', 'Detail'), ['task/view', 'id' => $task->id])?></td>
                                     </tr>

@@ -5,13 +5,13 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Tasks */
 
-$this->title = $modelTasks->id;
+$this->title = $modelTasks->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tasks'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tasks-view">
 
-    <h1>#<?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $modelTasks->id], ['class' => 'btn btn-primary']) ?>
@@ -27,9 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $modelTasks,
         'attributes' => [
-            'id',
-            'customer_id',
-            'content:ntext',
+            'customer',
+            'note:ntext',
             [
                 'attribute' => 'charge',
                 'value' => number_format($modelTasks->charge)
@@ -85,5 +84,5 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="padding-v-md">
             <div class="line line-dashed"></div>
         </div>
-        <h3 class="pull-right"><?= Yii::t('app', 'Total:')?> <?= number_format($modelTasks->charge + $total)?></h3>
+        <h3 class="pull-right"><?= Yii::t('app', 'Total:')?> <?= number_format($modelTasks->charge + $total)?> (<?= $modelTasks->paid == 1 ? '<span class="glyphicon glyphicon-ok"></span> '. Yii::t('app', 'Paid') : Yii::t('app', 'Unpaid')?>)</h3>
 </div>

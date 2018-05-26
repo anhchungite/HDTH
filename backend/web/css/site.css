@@ -167,3 +167,11 @@ ul.list-accessories li select.form-control {
     overflow: hidden;
     font-size: 0;
 }
+
+.year-select {
+    margin-bottom: 25px;
+}
+
+.navbar-brand {
+    padding: 3px 15px;
+}

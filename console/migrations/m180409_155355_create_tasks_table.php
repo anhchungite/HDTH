@@ -11,7 +11,7 @@ class m180409_155355_create_tasks_table extends Migration
     {
         $this->createTable('tasks', [
             'id' => $this->primaryKey(),
-            'customer_id' => $this->string(),
+            'customer' => $this->string(),
             'content' => $this->text(),
             'charge' => $this->money(),
             'status' => $this->boolean()->defaultValue(0),

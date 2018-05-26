@@ -20,9 +20,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'customer_id') ?>
+    <?= $form->field($model, 'customer') ?>
 
-    <?= $form->field($model, 'content') ?>
+    <?= $form->field($model, 'note') ?>
 
     <?= $form->field($model, 'charge') ?>
 

@@ -8,10 +8,12 @@ use Yii;
  * This is the model class for table "tasks".
  *
  * @property int $id
- * @property string $customer_id
- * @property string $content
+ * @property string $customer
+ * @property string $note
+ * @property string $name
  * @property string $charge
  * @property int $status
+ * @property int $paid
  * @property string $create_at
  * @property string $update_at
  * @property int $deleted
@@ -20,6 +22,16 @@ use Yii;
  */
 class Tasks extends \yii\db\ActiveRecord
 {
+    public function beforeSave($insert)
+    {
+        $this->customer = strtoupper($this->customer);
+        return parent::beforeSave($insert);
+    }
+    public static function find()
+    {
+        return new TasksQuery(get_called_class());
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -34,12 +46,12 @@ class Tasks extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content'], 'string'],
+            [['note'], 'string'],
             [['charge'], 'number'],
-            [['content', 'charge'], 'required'],
-            [['status', 'deleted'], 'integer'],
+            [['charge'], 'required'],
+            [['status', 'paid', 'deleted'], 'integer'],
             [['create_at', 'update_at'], 'safe'],
-            [['customer_id'], 'string', 'max' => 255],
+            [['customer', 'name'], 'string', 'max' => 255],
         ];
     }
 
@@ -49,14 +61,14 @@ class Tasks extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'customer_id' => Yii::t('app', 'Customer'),
-            'content' => Yii::t('app', 'Note'),
+            'name' => Yii::t('app', 'Name'),
+            'customer' => Yii::t('app', 'Customer'),
+            'note' => Yii::t('app', 'Note'),
             'charge' => Yii::t('app', 'Charge'),
+            'paid' => Yii::t('app', 'Paid'),
             'status' => Yii::t('app', 'Status'),
             'create_at' => Yii::t('app', 'Create At'),
             'update_at' => Yii::t('app', 'Update At'),
-            'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
 

@@ -30,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Html::img(Yii::$app->params['logo'], ['width' => '125px']),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => Yii::$app->user->isGuest ? 'navbar-default' : 'navbar-inverse' . ' navbar-fixed-top',
@@ -43,16 +43,16 @@ AppAsset::register($this);
     ];
     if (Yii::$app->user->isGuest) {
         //$menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
+        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-log-in"></span> ' . Yii::t('app', 'Login'), 'url' => ['/site/login']];
     } else {
-        $menuItems[] = ['label' => Yii::t('app', 'Manage Task'), 'url' => ['/task']];
+        $menuItems[] = ['label' => '<span class="glyphicon glyphicon-tasks"></span> ' . Yii::t('app', 'Manage Task'), 'url' => ['/task']];
         if(\common\components\Auth::isAdmin()) {
-            $menuItems[] = ['label' => Yii::t('app', 'Dashboard'), 'url' => ['/admin']];  
+            $menuItems[] = ['label' => '<span class="glyphicon glyphicon-dashboard"></span> ' . Yii::t('app', 'Dashboard'), 'url' => ['/admin']];  
         }   
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                Yii::t('app', 'Logout') . '(' . Yii::$app->user->identity->username . ')',
+                '<span class="glyphicon glyphicon-log-out"></span> ' . Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->name . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -75,6 +75,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
+        'encodeLabels' => false,
     ]);
     NavBar::end();
     ?>

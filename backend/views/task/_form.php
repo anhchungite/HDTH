@@ -41,13 +41,15 @@ $this->registerJs($jsOnload, View::POS_HEAD);
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <?= $form->field($modelTasks, 'customer_id')->widget(Typeahead::classname(), [
+            <?= $form->field($modelTasks, 'name')->textInput(['maxlength' => true])?>            
+
+            <?= $form->field($modelTasks, 'customer')->widget(Typeahead::classname(), [
                 'options' => ['placeholder' => Yii::t('app', 'Filter as you type ...')],
                 'pluginOptions' => ['highlight'=>true],
                 'dataset' => [
                     [
-                        'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('customer_id')",
-                        'display' => 'customer_id',
+                        'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('customer')",
+                        'display' => 'customer',
                         'remote' => [
                             'url' => Url::to(['task/get-customer']) . '?q=%QUERY',
                             'wildcard' => '%QUERY'
@@ -56,10 +58,12 @@ $this->registerJs($jsOnload, View::POS_HEAD);
                 ]
             ]); ?>
 
-            <?= $form->field($modelTasks, 'content')->textarea(['rows' => 6]) ?>
+            <?= $form->field($modelTasks, 'note')->textarea(['rows' => 6]) ?>
 
             <?= $form->field($modelTasks, 'charge')->textInput(['maxlength' => true, 'value' => $modelTasks->charge ? $modelTasks->charge : 0]) ?>
             
+            <?= $form->field($modelTasks, 'paid')->checkbox() ?>
+
             <?= $form->field($modelTasks, 'status')->dropDownList(
                 CommonHelper::transArray(Yii::$app->params['task.status'])
             ) ?>
@@ -102,7 +106,7 @@ $this->registerJs($jsOnload, View::POS_HEAD);
                                     <div class="row">
                                         <div class="col-sm-6">
                                         <?= $form->field($modelTaskDetail, "[{$index}]accessories_id")->dropDownList(
-                                                ArrayHelper::map(Accessories::findAll(['deleted' => 0]), 'id', 'name'),
+                                                ArrayHelper::map(Accessories::find()->all(), 'id', 'name'),
                                                 ['prompt'=> Yii::t('app', '-Choose a Acessories-')]
                                             ) ?>
                                             <?php

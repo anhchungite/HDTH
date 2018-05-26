@@ -17,8 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Access deny' => '',
-    'Please contact us if you think this is a server error. Thank you.' => 'Vui lòng liên hệ với chúng tôi nếu bạn cho rằng đây là lỗi máy chủ. Cảm ơn bạn.',
-    'The above error occurred while the Web server was processing your request.' => 'Lỗi trên xảy ra trong khi máy chủ Web đang xử lý yêu cầu của bạn.',
-    'The requested page does not exist.' => 'Trang yêu cầu không tồn tại.',
+    'Incorrect old password.' => '',
 ];

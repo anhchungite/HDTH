@@ -7,10 +7,10 @@ class CustomerService {
         $out = [];
         if (!is_null($q)) {
             $query = new Query;
-            $query->select('customer_id')
+            $query->select('customer')
                 ->distinct()
                 ->from('tasks')
-                ->where(['like', 'customer_id', $q])
+                ->where(['like', 'customer', $q])
                 ->limit(20);
             $command = $query->createCommand();
             $data = $command->queryAll();

@@ -31,14 +31,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
             'email:email',
             'role',
-            'status',
-            'created_at',
-            'updated_at'
+            [
+                'attribute' => 'status',
+                'value' => Yii::t('app', Yii::$app->params['user.status'][$model->status])
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => date('Y-m-d H:i:s', $model->created_at)
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => date('Y-m-d H:i:s', $model->created_at)
+            ],
         ],
     ]) ?>
 

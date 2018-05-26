@@ -9,8 +9,10 @@ class BaseController extends Controller {
     
     public function init()
     {
+        
         parent::init();
         $cookies = Yii::$app->request->cookies;
+        // echo $cookies->getValue('language', 'en-US');
         if($cookies->has('language') && $this->checkValidLanguage($cookies->get('language'))) {
             Yii::$app->language = $cookies->get('language')->value;
         }

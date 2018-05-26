@@ -24,7 +24,7 @@ class AccessoriesController extends BaseController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'deleted', 'get-info', 'get-accessories'],
+                        'actions' => ['index', 'view', 'create', 'update', 'deleted', 'get-info', 'get-accessories'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -132,7 +132,7 @@ class AccessoriesController extends BaseController
      */
     protected function findModel($id)
     {
-        if (($model = Accessories::findOne(['id' => $id, 'deleted' => 0])) !== null) {
+        if (($model = Accessories::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
@@ -143,20 +143,8 @@ class AccessoriesController extends BaseController
         if (Yii::$app->request->isAjax) {
             $post = Yii::$app->request->post();
             $id = $post['id'];
-            $model = new Accessories();
-            $accessories = $model->findOne(['id' => $id, 'deleted' => 0]); 
-            $data = [
-                'id' => $accessories->id,
-                'name' => $accessories->name,
-                'charge' => $accessories->charge,
-                'price' => $accessories->price,
-            ];
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-            return [
-                'result' => $data,
-                'code' => 100,
-            ];
-          }
+            return \common\services\AccessoriesService::getDetail($id);
+        }
     }
 
     public function actionGetAccessories($q = null) {

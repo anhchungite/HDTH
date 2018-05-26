@@ -77,9 +77,9 @@ class SiteController extends BaseController
         $tasks = null;
         if (!is_null($customer)) {
             if(Yii::$app->user->isGuest) {
-                $tasks = Tasks::findOne(['customer_id' => $customer]);
+                $tasks = Tasks::findOne(['customer' => $customer]);
             } else {
-                $tasks = Tasks::findAll(['customer_id' => $customer]);
+                $tasks = Tasks::findAll(['customer' => $customer]);
             }
         }
         return $this->render('index',

@@ -31,6 +31,7 @@ $this->title = 'My Yii Application';
               <?php if(Yii::$app->user->isGuest){?>
                 <thead>
                   <tr>
+                    <th><?=Yii::t('app', 'Name')?></th>
                     <th><?=Yii::t('app', 'Customer')?></th>
                     <th><?=Yii::t('app', 'Create At')?></th>
                     <th><?=Yii::t('app', 'Status')?></th>
@@ -38,7 +39,8 @@ $this->title = 'My Yii Application';
                 </thead>
                 <tbody class='text-left'>
                   <tr>
-                    <td><?= $tasks->customer_id ?></td>                
+                    <td><?= $tasks->name ?></td>                
+                    <td><?= $tasks->customer ?></td>                
                     <td><?= $tasks->create_at?></td>                
                     <td><?= Yii::t('app', Yii::$app->params['task.status'][$tasks->status])?></td>               
                   </tr>
@@ -47,6 +49,7 @@ $this->title = 'My Yii Application';
                 <thead>
                   <tr>
                     <th><?=Yii::t('app', 'Serial')?></th>
+                    <th><?=Yii::t('app', 'Name')?></th>
                     <th><?=Yii::t('app', 'Customer')?></th>
                     <th><?=Yii::t('app', 'Create At')?></th>
                     <th><?=Yii::t('app', 'Status')?></th>
@@ -59,7 +62,8 @@ $this->title = 'My Yii Application';
                 ?>
                   <tr>
                     <td><?= $k + 1?></td>
-                    <td><?= $task->customer_id ?></td>                
+                    <td><?= $task->name ?></td>                
+                    <td><?= $task->customer ?></td>                
                     <td><?= $task->create_at?></td>                
                     <td><?= Yii::$app->params['task.status'][$task->status]?></td>                
                     <td><?= Html::a(Yii::t('app', 'Detail'), ['task/view', 'id' => $task->id])?></td>                

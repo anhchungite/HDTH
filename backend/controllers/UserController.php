@@ -7,6 +7,7 @@ use common\models\User;
 use backend\models\SearchUser;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
@@ -25,7 +26,7 @@ class UserController extends BaseController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'update', 'deleted', 'view'],
+                        'actions' => ['index', 'create', 'update', 'delete', 'view', 'change-password'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -123,9 +124,26 @@ class UserController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if($id == 1) {
+            throw new ForbiddenHttpException(Yii::t('app/error', 'Access deny'));
+        }
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        $model->deleted = 1;
+        if($model->save()) {
+            return $this->redirect(['index']);
+        }
+    }
+
+    public function actionChangePassword() {
+        $model = new \backend\models\ChangePasswordForm();
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->change()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Your password has changed!'));
+            return $this->goHome();
+        }
+        return $this->render('change-password', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -143,4 +161,6 @@ class UserController extends BaseController
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    
 }

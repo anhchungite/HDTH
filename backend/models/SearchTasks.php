@@ -19,7 +19,7 @@ class SearchTasks extends Tasks
     {
         return [
             [['id', 'status', 'deleted'], 'integer'],
-            [['customer_id', 'content', 'create_at', 'update_at'], 'safe'],
+            [['customer', 'note', 'create_at', 'update_at'], 'safe'],
             [['charge'], 'number'],
         ];
     }
@@ -68,8 +68,8 @@ class SearchTasks extends Tasks
             'deleted' => $this->deleted,
         ]);
 
-        $query->andFilterWhere(['like', 'customer_id', $this->customer_id])
-            ->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'customer', $this->customer])
+            ->andFilterWhere(['like', 'note', $this->note]);
 
         return $dataProvider;
     }

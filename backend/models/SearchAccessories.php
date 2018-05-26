@@ -42,7 +42,7 @@ class SearchAccessories extends Accessories
      */
     public function search($params)
     {
-        $query = Accessories::find()->where(['deleted' => 0]);
+        $query = Accessories::find();
 
         // add conditions that should always apply here
 
